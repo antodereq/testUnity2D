@@ -2,24 +2,18 @@ using UnityEngine;
 
 public class GroundChecker : MonoBehaviour
 {
-    private string groundTag = "ground"; //tag ground na elementach sceny
-    private bool isGrounded;
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag(groundTag))
-        {
-            isGrounded = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag(groundTag))
-        {
-            isGrounded = false;
-        }
-    }
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float checkRadius = 0.1f;
+    [SerializeField] private LayerMask groundLayer;
+
     public bool IsGrounded()
     {
-        return isGrounded;
+        return Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
     }
 }

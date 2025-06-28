@@ -1,26 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
 {
-    [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private GroundChecker groundChecker; //aby podczepiæ skrypt GroundChecker w inspectorze
-
-    private bool isJumping = false;
+    [SerializeField] private float jumpPower = 14f; // SiÅ‚a skoku
+    [SerializeField] private Rigidbody2D _rb; // Komponent Rigidbody2D postaci
+    [SerializeField] private GroundChecker groundChecker; // Komponent sprawdzajÄ…cy, czy postaÄ‡ stoi na ziemi
+    // [SerializeField] private Animator animator; // Komponent Animator sterujÄ…cy animacjami
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && groundChecker.IsGrounded()) //gdy naciœniêto spacjê i gracz jest na ziemi
+        // animator.SetFloat("yVelocity", _rb.velocity.y);
+
+        if (Input.GetKeyDown(KeyCode.Space) && groundChecker.IsGrounded())
         {
-            isJumping = true;
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpPower);
+            // animator.SetBool("isJumping", true);
         }
-    }
-    private void FixedUpdate()
-    {
-        if(isJumping)
+
+        if (groundChecker.IsGrounded() && Mathf.Abs(_rb.linearVelocity.y) < 0.1f)
         {
-            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            isJumping = false;
+            // animator.SetBool("isJumping", false);
         }
     }
 }
