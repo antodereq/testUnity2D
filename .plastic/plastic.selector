@@ -1,4 +1,0 @@
-repository "Gra_Kurumi/Gra_Kurumi@20067030210172@cloud"
-  path "/"
-    br "/main"
-    co "/main"
