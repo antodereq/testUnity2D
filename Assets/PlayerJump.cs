@@ -28,6 +28,7 @@ public class PlayerJump : MonoBehaviour
 
     private void Update()
     {
+
         // Przesyłamy prędkość pionową do animatora, aby mógł sterować animacją skoku/opadania
         animator.SetFloat("yVelocity", _rb.linearVelocity.y);
 

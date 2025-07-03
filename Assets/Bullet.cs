@@ -31,6 +31,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("Kula trafi³a gracza!");
+            collision.GetComponent<PlayerHealth>().TakeDamage();
             Destroy(gameObject);
         }
     }
