@@ -12,7 +12,10 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+
+        // Ustawiamy zakres i start Slidera
         healthSlider.maxValue = maxHealth;
+        healthSlider.minValue = 0;
         healthSlider.value = currentHealth;
     }
 
